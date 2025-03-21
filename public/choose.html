@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>WhisperRoom - Choose</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="choose-container">
+    <h1>Hello, <span id="displayUsername"></span></h1>
+    <button id="hostBtn">Host a Room</button>
+    <button id="joinBtn">Join a Room</button>
+    <div id="joinRoomDiv" style="display: none;">
+      <input type="text" id="roomCodeInput" placeholder="Enter 8-digit room code" maxlength="8">
+      <button id="joinRoomBtn">Join</button>
+    </div>
+  </div>
+  <script>
+    // Display the username stored in localStorage
+    const username = localStorage.getItem('username');
+    document.getElementById('displayUsername').innerText = username;
+    
+    document.getElementById('hostBtn').addEventListener('click', () => {
+      localStorage.setItem('action', 'host');
+      window.location.href = '/chat';
+    });
+    
+    document.getElementById('joinBtn').addEventListener('click', () => {
+      document.getElementById('joinRoomDiv').style.display = 'block';
+    });
+    
+    document.getElementById('joinRoomBtn').addEventListener('click', () => {
+      const roomCode = document.getElementById('roomCodeInput').value;
+      localStorage.setItem('roomCode', roomCode);
+      localStorage.setItem('action', 'join');
+      window.location.href = '/chat';
+    });
+  </script>
+</body>
+</html>
