@@ -97,10 +97,20 @@
       });
       closeRoomBtn.style.display = 'inline';
     } else if (action === 'join') {
-      socket.emit('join-room', { username, roomCode });
-      roomInfo.innerText = `Room Code: ${roomCode}`;
-      leaveRoomBtn.style.display = 'inline';
-    }
+  socket.emit('join-room', { username, roomCode });
+  roomInfo.innerHTML = `
+    Room Code: ${roomCode}
+    <button id="copyBtn" class="copy-btn">
+      <img src="/img/copy.png" alt="Copy" />
+    </button>
+  `;
+  leaveRoomBtn.style.display = 'inline';
+  const copyBtn = document.getElementById('copyBtn');
+  copyBtn.addEventListener('click', () => {
+    navigator.clipboard.writeText(roomCode);
+    alert('Room code copied!');
+  });
+}
 
     /*********************************************************
      * 3. Typing Indicator Logic

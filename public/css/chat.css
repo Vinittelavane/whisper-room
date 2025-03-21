@@ -23,7 +23,7 @@ body {
 
 /* Chat Container */
 .chat-container {
-  width: 500px;
+  width: 700px;
   background: #fff;
   border-radius: 10px;
   overflow: hidden;
@@ -248,7 +248,7 @@ body {
 /* Emoji Picker */
 .emoji-picker {
   position: absolute;
-  top: 45px;
+  top: -50px;
   left: 0;
   border: 1px solid #ccc;
   background: #fff;
