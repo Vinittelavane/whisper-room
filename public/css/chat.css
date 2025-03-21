@@ -23,7 +23,7 @@ body {
 
 /* Chat Container */
 .chat-container {
-  width: 600px;
+  width: 500px;
   background: #fff;
   border-radius: 10px;
   overflow: hidden;
@@ -279,21 +279,7 @@ body {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.image-container {
+/* .image-container {
   margin-right: 10px;
 }
 
@@ -307,4 +293,4 @@ body {
 .image-button img {
   width: 30px;
   height: 30px;
-}
+} */
