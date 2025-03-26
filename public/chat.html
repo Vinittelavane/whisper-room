@@ -146,7 +146,8 @@
       if (data.isSystem) {
         const systemDiv = document.createElement('div');
         systemDiv.classList.add('system-message');
-        const formattedTime = new Date(data.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+        // Format timestamp without seconds
+        const formattedTime = new Date(data.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
         systemDiv.innerHTML = data.message + `<div class="system-time">${formattedTime}</div>`;
         chatMessages.appendChild(systemDiv);
       } else {
@@ -167,7 +168,8 @@
 
         const timeSpan = document.createElement('span');
         timeSpan.classList.add('msg-time');
-        timeSpan.textContent = new Date(data.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+        // Format timestamp without seconds
+        timeSpan.textContent = new Date(data.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
         const reactionDisplay = document.createElement('div');
         reactionDisplay.classList.add('reaction-display-inline');
