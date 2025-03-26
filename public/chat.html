@@ -29,6 +29,8 @@
           <img src="/img/emoji.png" alt="Emoji" />
         </button>
         <div id="emojiPicker" class="emoji-picker" style="display: none;">
+          <span>👍</span>
+          <span>👎</span>
           <span>😀</span>
           <span>😂</span>
           <span>😍</span>
@@ -202,7 +204,7 @@
         reactionPopup.classList.add('reaction-popup-outside');
         reactionPopup.style.display = 'none';
 
-        const availableReactions = ['👍', '❤️', '😂', '😮', '😢', '😡'];
+        const availableReactions = ['👍', '👎', '❤️', '😂', '😮', '😢', '😡'];
         availableReactions.forEach(emoji => {
           const emojiSpan = document.createElement('span');
           emojiSpan.textContent = emoji;
