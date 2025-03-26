@@ -56,27 +56,27 @@ io.on('connection', (socket) => {
     }
     
     // Broadcast a system message that the user joined
-    const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    const timestamp = Date.now();
     io.to(roomCode).emit('chat-message', {
       id: Date.now().toString(),
       username: 'System',
       message: `${socket.username} has joined the room.`,
       isSystem: true,
-      timestamp: time
+      timestamp: timestamp
     });
     console.log(`${socket.username} joined room ${roomCode}`);
   });
 
   // Regular chat message
   socket.on('chat-message', (message) => {
-    const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    const timestamp = Date.now();
     const messageId = (nextMessageId++).toString();
     io.to(socket.roomCode).emit('chat-message', {
       id: messageId,
       username: socket.username,
       message: message,
       isSystem: false,
-      timestamp: time
+      timestamp: timestamp
     });
   });
 
@@ -125,13 +125,13 @@ io.on('connection', (socket) => {
     if (!socket.isHost) {
       const roomCode = socket.roomCode;
       const username = socket.username;
-      const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      const timestamp = Date.now();
       io.to(roomCode).emit('chat-message', {
         id: Date.now().toString(),
         username: 'System',
         message: `${username} has left the room.`,
         isSystem: true,
-        timestamp: time
+        timestamp: timestamp
       });
       socket.leave(roomCode);
       console.log(`${username} left room ${roomCode}`);
@@ -159,17 +159,3 @@ io.on('connection', (socket) => {
 http.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -97,20 +97,20 @@
       });
       closeRoomBtn.style.display = 'inline';
     } else if (action === 'join') {
-  socket.emit('join-room', { username, roomCode });
-  roomInfo.innerHTML = `
-    Room Code: ${roomCode}
-    <button id="copyBtn" class="copy-btn">
-      <img src="/img/copy.png" alt="Copy" />
-    </button>
-  `;
-  leaveRoomBtn.style.display = 'inline';
-  const copyBtn = document.getElementById('copyBtn');
-  copyBtn.addEventListener('click', () => {
-    navigator.clipboard.writeText(roomCode);
-    alert('Room code copied!');
-  });
-}
+      socket.emit('join-room', { username, roomCode });
+      roomInfo.innerHTML = `
+        Room Code: ${roomCode}
+        <button id="copyBtn" class="copy-btn">
+          <img src="/img/copy.png" alt="Copy" />
+        </button>
+      `;
+      leaveRoomBtn.style.display = 'inline';
+      const copyBtn = document.getElementById('copyBtn');
+      copyBtn.addEventListener('click', () => {
+        navigator.clipboard.writeText(roomCode);
+        alert('Room code copied!');
+      });
+    }
 
     /*********************************************************
      * 3. Typing Indicator Logic
@@ -146,7 +146,8 @@
       if (data.isSystem) {
         const systemDiv = document.createElement('div');
         systemDiv.classList.add('system-message');
-        systemDiv.innerHTML = data.message + `<div class="system-time">${data.timestamp}</div>`;
+        const formattedTime = new Date(data.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+        systemDiv.innerHTML = data.message + `<div class="system-time">${formattedTime}</div>`;
         chatMessages.appendChild(systemDiv);
       } else {
         const wrapper = document.createElement('div');
@@ -166,7 +167,7 @@
 
         const timeSpan = document.createElement('span');
         timeSpan.classList.add('msg-time');
-        timeSpan.textContent = data.timestamp;
+        timeSpan.textContent = new Date(data.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
 
         const reactionDisplay = document.createElement('div');
         reactionDisplay.classList.add('reaction-display-inline');
